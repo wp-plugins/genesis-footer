@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Genesis Footer
-Plugin URI: http://www.wpchildthemes.com/
+Plugin URI: http://www.wpchildthemes.com/plugins
 Description: This plugin allows you to modify Genesis-powered-website footer via Genesis theme settings.
-Version: 0.1
+Version: 0.1.1
 Author: WPChildThemes
 Author URI: http://www.wpchildthemes.com/
 
@@ -40,12 +40,12 @@ add_action('admin_menu', 'wpct_footer_add_settings_boxes', 11);
 
 function wpct_footer_add_settings_boxes() {
 	global $_genesis_theme_settings_pagehook;
-	add_meta_box('wpct-footer-box', 'WPChildThemes - '.__('Footer', 'extended'), 'wpct_footer_box', $_genesis_theme_settings_pagehook, 'column2');
+	add_meta_box('wpct-footer-box', 'WPChildThemes - '.__('Footer', 'wpct_footer'), 'wpct_footer_box', $_genesis_theme_settings_pagehook, 'column2');
 }
 
 function wpct_footer_box() { ?>
 	<p><?php _e("Credits Text:", 'wpct_footer'); ?><br />
-	<textarea name="<?php echo GENESIS_SETTINGS_FIELD; ?>[wpct_footer_creds]" cols="39" rows="3"><?php genesis_option('wpct_footer_creds'); ?></textarea><br />
+	<textarea name="<?php echo GENESIS_SETTINGS_FIELD; ?>[wpct_footer_creds]" cols="39" rows="3"><?php echo htmlspecialchars(genesis_get_option('wpct_footer_creds')); ?></textarea><br />
 	<span class="description"><?php _e('<b>Default Text:</b><br/> Copyright [footer_copyright] [footer_childtheme_link] &amp;middot; [footer_genesis_link] [footer_studiopress_link] &amp;middot; [footer_wordpress_link] &amp;middot; [footer_loginout]', 'wpct_footer'); ?></span></p>
 	
 	<p><?php _e("Custom Back To Top Text:", 'wpct_footer'); ?><br />
